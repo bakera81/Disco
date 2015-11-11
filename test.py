@@ -1,5 +1,7 @@
+from __future__ import division
 import RPi.GPIO as gpio
 import time
+import sys
 
 gpio.setmode(gpio.BCM)
 green1 = 24
@@ -127,14 +129,25 @@ def accelerate(rest, n, increment, linear_flag):
             rest = rest - increment
         else:
             rest = rest/increment
-        print "REST = " + rest
+        #print "REST = " + str(rest)
         n = n-1
+
+def cleanup():
+    initialize()
+    gpio.cleanup()
 
 def run():
     initialize()
-    red(0.5, 5)
-    green(2, 0)
-    alternate_colors(.5, 1)
-    accelerate(1, 5, 2, False)
-    #cycle(0.01, 10)
-    gpio.cleanup()
+    while True:
+	try:
+            red(0.5, 5)
+            green(2, 0)
+            alternate_colors(.5, 1)
+            accelerate(1, 6, 1.5, False)
+            cycle((1/1.5)**(6+1), 10)
+    	except KeyboardInterrupt:
+	    print "Cleaning up..."
+	    cleanup()
+	    sys.exit()
+
+run()
