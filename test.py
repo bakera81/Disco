@@ -104,7 +104,7 @@ def red(rest, n):
         time.sleep(rest)
         gpio.output(red1, 0)
         gpio.output(red2, 0)
-
+        time.sleep(rest)
         n = n-1
 
 def green(rest, n):
@@ -115,20 +115,25 @@ def green(rest, n):
         time.sleep(rest)
         gpio.output(green1,0)
         gpio.output(green2, 0)
-
+        time.sleep(rest)
         n = n-1
 
-def accelerate(rest, n, increment):
+def accelerate(rest, n, increment, linear_flag):
 
     while n >= 0:
         cycle(rest, 0)
-        rest = rest - increment
+
+        if linear_flag:
+            rest = rest - increment
+        else:
+            rest = rest/increment
+
         n = n-1
 
 def run():
     initialize()
     red(0.5, 5)
-    green(3, 0)
-    alternate_colors(.5, 3)
-    accelerate(1.01, 10, .1)
-    cycle(0.01, 10)
+    green(2, 0)
+    alternate_colors(.5, 1)
+    accelerate(1, 5, 2, False)
+    #cycle(0.01, 10)
