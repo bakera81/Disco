@@ -1,7 +1,7 @@
-import RPi.GPIO as GPIO
+import RPi.GPIO as gpio
 import time
 
-GPIO.setmode(GPIO.BCM)
+gpio.setmode(gpio.BCM)
 green1 = 24
 green2 = 20
 red1 = 16 #DUD
@@ -13,83 +13,121 @@ blue2 = 18
 
 rest = 0.2
 
-GPIO.setup(green1, GPIO.OUT)
-GPIO.setup(green2, GPIO.OUT)
-GPIO.setup(red1, GPIO.OUT)
-GPIO.setup(red2, GPIO.OUT)
-GPIO.setup(orange1, GPIO.OUT)
-GPIO.setup(orange2, GPIO.OUT)
-GPIO.setup(blue1, GPIO.OUT)
-GPIO.setup(blue2, GPIO.OUT)
+def initialize():
 
-GPIO.output(green1,0)
-GPIO.output(green2,0)
-GPIO.output(red1,0)
-GPIO.output(red2,0)
-GPIO.output(orange1,0)
-GPIO.output(orange2,0)
-GPIO.output(blue1,0)
-GPIO.output(blue2,0)
+    gpio.setup(green1, gpio.OUT)
+    gpio.setup(green2, gpio.OUT)
+    gpio.setup(red1, gpio.OUT)
+    gpio.setup(red2, gpio.OUT)
+    gpio.setup(orange1, gpio.OUT)
+    gpio.setup(orange2, gpio.OUT)
+    gpio.setup(blue1, gpio.OUT)
+    gpio.setup(blue2, gpio.OUT)
 
-def alternate_colors():
-    n = 5
+    gpio.output(green1,0)
+    gpio.output(green2,0)
+    gpio.output(red1,0)
+    gpio.output(red2,0)
+    gpio.output(orange1,0)
+    gpio.output(orange2,0)
+    gpio.output(blue1,0)
+    gpio.output(blue2,0)
+
+
+
+def alternate_colors(rest, n):
+
     while n >= 0:
-        GPIO.output(green1, 1)
+        gpio.output(green1, 1)
         time.sleep(rest)
-        GPIO.output(green1,0)
-        GPIO.output(green2, 1)
+        gpio.output(green1,0)
+        gpio.output(green2, 1)
         time.sleep(rest)
-        GPIO.output(green2, 0)
-        GPIO.output(orange1, 1)
+        gpio.output(green2, 0)
+        gpio.output(orange1, 1)
         time.sleep(rest)
-        GPIO.output(orange1, 0)
-        GPIO.output(orange2, 1)
+        gpio.output(orange1, 0)
+        gpio.output(orange2, 1)
         time.sleep(rest)
-        GPIO.output(orange2, 0)
-        GPIO.output(blue1, 1)
+        gpio.output(orange2, 0)
+        gpio.output(blue1, 1)
         time.sleep(rest)
-        GPIO.output(blue1, 0)
-        GPIO.output(blue2, 1)
+        gpio.output(blue1, 0)
+        gpio.output(blue2, 1)
         time.sleep(rest)
-        GPIO.output(blue2, 0)
-        GPIO.output(red1, 1)
+        gpio.output(blue2, 0)
+        gpio.output(red1, 1)
         time.sleep(rest)
-        GPIO.output(red1, 0)
-        GPIO.output(red2, 1)
+        gpio.output(red1, 0)
+        gpio.output(red2, 1)
         time.sleep(rest)
-        GPIO.output(red2, 0)
-  
-        n = n-1
-
-def cycle():
-    n = 10
-    while n >= 0:
-        GPIO.output(green1, 1)
-        time.sleep(rest)
-        GPIO.output(green1,0)
-        GPIO.output(orange1, 1)
-        time.sleep(rest)
-        GPIO.output(orange1, 0)
-        GPIO.output(blue1, 1)
-        time.sleep(rest)
-        GPIO.output(blue1, 0)
-        GPIO.output(red1, 1)
-        time.sleep(rest)
-        GPIO.output(red1, 0)
-        
-        GPIO.output(green2, 1)
-        time.sleep(rest)
-        GPIO.output(green2, 0)
-        GPIO.output(orange2, 1)
-        time.sleep(rest)
-        GPIO.output(orange2, 0)
-        GPIO.output(blue2, 1)
-        time.sleep(rest)
-        GPIO.output(blue2, 0)
-        GPIO.output(red2, 1)
-        time.sleep(rest)
-        GPIO.output(red2, 0)
+        gpio.output(red2, 0)
 
         n = n-1
 
-cycle()
+def cycle(rest, n):
+
+    while n >= 0:
+        gpio.output(green1, 1)
+        time.sleep(rest)
+        gpio.output(green1,0)
+        gpio.output(orange1, 1)
+        time.sleep(rest)
+        gpio.output(orange1, 0)
+        gpio.output(blue1, 1)
+        time.sleep(rest)
+        gpio.output(blue1, 0)
+        gpio.output(red1, 1)
+        time.sleep(rest)
+        gpio.output(red1, 0)
+
+        gpio.output(green2, 1)
+        time.sleep(rest)
+        gpio.output(green2, 0)
+        gpio.output(orange2, 1)
+        time.sleep(rest)
+        gpio.output(orange2, 0)
+        gpio.output(blue2, 1)
+        time.sleep(rest)
+        gpio.output(blue2, 0)
+        gpio.output(red2, 1)
+        time.sleep(rest)
+        gpio.output(red2, 0)
+
+        n = n-1
+
+def red(rest, n):
+
+    while n >= 0:
+        gpio.output(red1, 1)
+        gpio.output(red2, 1)
+        time.sleep(rest)
+        gpio.output(red1, 0)
+        gpio.output(red2, 0)
+
+        n = n-1
+
+def green(rest, n):
+
+    while n >= 0
+        gpio.output(green1, 1)
+        gpio.output(green2, 1)
+        time.sleep(rest)
+        gpio.output(green1,0)
+        gpio.output(green2, 0)
+
+        n = n-1
+
+def accelerate(rest, n, increment):
+
+    while n >= 0:
+        cycle(rest, 0)
+        rest = rest - increment
+        n = n-1
+
+def run():
+    initialize()
+    red(0.2, 5)
+    green(2, 0)
+    alternate_colors(.2, 0)
+    accelerate(1.01, 10, .1)
