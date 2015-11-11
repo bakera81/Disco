@@ -4,14 +4,14 @@ import time
 import sys
 
 gpio.setmode(gpio.BCM)
-green1 = 24
-green2 = 20
-red1 = 16 #DUD
-red2 = 23
-orange1 = 25
-orange2 = 21
-blue1 = 12
-blue2 = 18
+green1 = 25
+green2 = 21
+red1 = 23 
+red2 = 20
+orange1 = 12
+orange2 = 18
+blue1 = 24
+blue2 = 16
 
 rest = 0.2
 
@@ -166,7 +166,7 @@ def run():
             green(2, 0)
             alternate_colors(.5, 1)
             accelerate(1, 6, 1.5, False)
-            cycle((1/1.5)**(6+1), 10)
+            cycle((1/1.5)**(6+1), 20)
     	except KeyboardInterrupt:
 	    print "Cleaning up..."
 	    cleanup()
