@@ -109,7 +109,7 @@ def red(rest, n):
 
 def green(rest, n):
 
-    while n >= 0
+    while n >= 0:
         gpio.output(green1, 1)
         gpio.output(green2, 1)
         time.sleep(rest)
