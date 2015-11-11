@@ -120,6 +120,28 @@ def green(rest, n):
         time.sleep(rest)
         n = n-1
 
+def blue(rest, n):
+
+    while n >= 0:
+        gpio.output(blue1, 1)
+        gpio.output(blue2, 1)
+        time.sleep(rest)
+        gpio.output(blue1,0)
+        gpio.output(blue2, 0)
+        time.sleep(rest)
+        n = n-1
+
+def orange(rest, n):
+
+    while n >= 0:
+        gpio.output(orange1, 1)
+        gpio.output(orange2, 1)
+        time.sleep(rest)
+        gpio.output(orange1,0)
+        gpio.output(orange2, 0)
+        time.sleep(rest)
+        n = n-1
+
 def accelerate(rest, n, increment, linear_flag):
 
     while n >= 0:
