@@ -127,7 +127,7 @@ def accelerate(rest, n, increment, linear_flag):
             rest = rest - increment
         else:
             rest = rest/increment
-
+        print "REST = " + rest
         n = n-1
 
 def run():
@@ -137,3 +137,4 @@ def run():
     alternate_colors(.5, 1)
     accelerate(1, 5, 2, False)
     #cycle(0.01, 10)
+    gpio.cleanup()
