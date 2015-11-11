@@ -127,7 +127,8 @@ def accelerate(rest, n, increment):
 
 def run():
     initialize()
-    red(0.2, 5)
-    green(2, 0)
-    alternate_colors(.2, 0)
+    red(0.5, 5)
+    green(3, 0)
+    alternate_colors(.5, 3)
     accelerate(1.01, 10, .1)
+    cycle(0.01, 10)
