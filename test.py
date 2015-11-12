@@ -181,4 +181,4 @@ def run():
 	    cleanup()
 	    sys.exit()
 
-#run()
+run()
