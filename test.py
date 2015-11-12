@@ -2,6 +2,7 @@ from __future__ import division
 import RPi.GPIO as gpio
 import time
 import sys
+import os
 
 gpio.setmode(gpio.BCM)
 green1 = 25
@@ -13,9 +14,13 @@ orange2 = 18
 blue1 = 24
 blue2 = 16
 
+switch = 5
+
 rest = 0.2
 
 def initialize():
+    
+    gpio.setup(switch, gpio.IN, gpio.PUD_UP)
 
     gpio.setup(green1, gpio.OUT)
     gpio.setup(green2, gpio.OUT)
@@ -167,9 +172,14 @@ def run():
             alternate_colors(.5, 1)
             accelerate(1, 6, 1.5, False)
             cycle((1/1.5)**(6+1), 20)
-    	except KeyboardInterrupt:
+	    if not gpio.input(switch):
+		print "Switch engaged, shutting down..."
+		cleanup()
+		os.system("sudo shutdown -h now") 
+		sys.exit()   
+	except KeyboardInterrupt:
 	    print "Cleaning up..."
 	    cleanup()
 	    sys.exit()
 
-run()
+#run()
