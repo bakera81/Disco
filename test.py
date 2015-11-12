@@ -175,8 +175,7 @@ def run():
 	    if not gpio.input(switch):
 		print "Switch engaged, shutting down..."
 		cleanup()
-		os.system("sudo shutdown -h now") 
-		sys.exit()   
+		os.system("sudo shutdown -h now")    
 	except KeyboardInterrupt:
 	    print "Cleaning up..."
 	    cleanup()
